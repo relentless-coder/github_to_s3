@@ -1,8 +1,7 @@
-import os
-import requests
+from parse_event import parse_event
+from get_commit import get_commit
 
 
-def setup():
-    headers = {
-            'Authoirization': 'token {:1}'.format(os.environ['github_token'])
-            }
+def setup(event, context):
+    commit = parse_event(event)
+    files = get_commit(commit)['files']
