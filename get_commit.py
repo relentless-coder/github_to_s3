@@ -6,11 +6,12 @@ from error import ResponseError
 
 def get_commit(commitId):
     url = 'https://api.github.com/repos/{:1}/{:2}/commits/{:3}'\
-            .format(os.environ('OWNER'), os.environ('REPO'), commitId)
+            .format(os.environ('GITHUB_USER'), os.environ('GITHUB_REPO'),
+                    commitId)
     headers = {'Authorization': 'token {:1}'
                .format(os.environ('GITHUB_TOKEN'))}
     r = request_handler('get', url, headers=headers)
     if r.status_code != 200:
-        raise ResponseError(r.status_code, r.json().message)
+        raise ResponseError(r.status_code, json.loads(r.json()['message']))
     else:
         return json.loads(r.json())
