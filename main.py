@@ -1,15 +1,16 @@
+import os
 from parse_event import parse_event
 from get_commit import get_commit
-from get_blob import get_blob
-from s3_client import upload_to_s3, delete_from_s3
+from is_in_path import is_in_path
+from process_file import process_file
 
 
 def setup(event, context):
     commit = parse_event(event)
     files = get_commit(commit)['files']
     for f in files:
-        if f.status == 'modified':
-            body = get_blob(f.sha)
-            upload_to_s3(body, f.filename)
-        elif f.status == 'removed':
-            delete_from_s3(f.filename)
+        if os.environ('CONTENT_PATH'):
+            if is_in_path(f.get('sha')):
+                process_file(f)
+        else:
+            process_file(f)
