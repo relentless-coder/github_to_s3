@@ -22,6 +22,5 @@ def delete_from_s3(key):
     :param bucket: the target bucket
     :param key: the file to be removed
     """
-    print('about to delete')
     return S3_CLIENT.delete_object(Bucket=os.environ['AWS_BUCKET'],
                                    Key=key)
