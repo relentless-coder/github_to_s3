@@ -25,4 +25,5 @@ I started this project, while I was working on a React APP that was hosted on S3
 
 ## Toubleshooting
 
-Kindly make sure that you have followed the steps correctly. If you are still facing any issue then please open an issue, or if you are in a hurry you may contact me at [mailto:contact@ayushbahuguna.com](Ayush bahuguna)
+Kindly make sure that you have followed the steps correctly. If you are still facing any issue then please open an issue.
+You can contact me at [Ayush Bahuguna](mailto:contact@ayushbahuguna.com)
