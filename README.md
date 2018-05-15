@@ -14,7 +14,7 @@ I started this project, while I was working on a React APP that was hosted on S3
     * set `main.setup` as the Handler
     * set `AWS_BUCKET` environment variable. This is the name of your s3 bucket where'd you want to deploy the code
     * set `AWS_REGION_NAME` environment variable. This is your aws region of your bucket
-    * set `CONTENT_PATH`(optional) if you want to deploy files from a particular directory in your github project. If you just want to deploy build files that are in the build directory of the root, then set value as `build`
+    * set `CONTENT_PATH`(optional) if you want to deploy files from a particular directory in your github project. For example, If you want to deploy files that are in the `build` directory of the root, then set value as `build`
     * set `GITHUB_REPO` environment variable. This is the name of the repo. **Note:** Don't include the github username. Set `example_repo` instead of `example_user/example_repo`.
     * set `GITHUB_TOKEN` environment variable. Your github personal access token with at least `repo_deployment` scope enabled.
     * set `GITHUB_USER` environment variable. Your github username.
