@@ -11,9 +11,12 @@ def getFilename(file_object):
     """
     
     if os.environ['CONTENT_PATH']:
-        temp_file = file_object['filename'].split('/')
-        temp_file.pop(0)
-        return  ''.join(temp_file) if len(temp_file) == 1 else '/'.join(temp_file)
+        temp_dir = os.environ['CONTENT_PATH'].split('/')
+        max_index = 0
+        for dr in temp_dir:
+            max_index = max(max_index, file_object['filename'].index(dr))
+
+        return file_object['filename'][max_index:]
     else:
         return  file_object['filename']
 
