@@ -1,7 +1,10 @@
 import os
+import base64
 import boto3
 
-s3 = boto3.client('s3', region_name=os.environ('AWS_REGION'))
+S3_CLIENT = boto3.client('s3', region_name=os.environ['AWS_REGION_NAME'],
+                         aws_access_key_id=os.environ['aws_access_key_id'],
+                         aws_secret_access_key=os.environ['aws_secret_access_key'])
 
 
 def upload_to_s3(data, key):
@@ -10,7 +13,8 @@ def upload_to_s3(data, key):
     :param data: base64 encoded data
     :param key: the file name
     """
-    return s3.put_object(Bucket=os.environ('AWS_BUCKET'), Key=key, Body=data)
+    return S3_CLIENT.put_object(Bucket=os.environ['AWS_BUCKET'],
+                                Key=key, Body=base64.b64decode(data).decode('utf-8'))
 
 
 def delete_from_s3(key):
@@ -18,5 +22,5 @@ def delete_from_s3(key):
     :param bucket: the target bucket
     :param key: the file to be removed
     """
-    return s3.delete_object(Bucket=os.environ('AWS_BUCKET'),
-                            Key=key)
+    return S3_CLIENT.delete_object(Bucket=os.environ['AWS_BUCKET'],
+                                   Key=key)
