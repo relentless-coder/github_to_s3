@@ -20,8 +20,4 @@ def setup(event, context):
     if commit != False:
         files = get_commit(commit)['files']
         for local_file in files:
-            if os.environ['CONTENT_PATH']:
-                if is_in_path(local_file.get('sha')):
-                    process_file(local_file)
-            else:
                 process_file(local_file)
